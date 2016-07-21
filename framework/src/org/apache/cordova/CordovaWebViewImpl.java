@@ -204,7 +204,13 @@ public class CordovaWebViewImpl implements CordovaWebView {
 
     @Override
     public void loadUrl(String url) {
-        loadUrlIntoView(url, true);
+        Map <String,String> headers = new HashMap<String,String>();
+        loadUrl(url, headers);
+    }
+
+    @Override
+    public void loadUrl(String url, Map<String,String> headers) {
+        loadUrlIntoView(url, true, headers);
     }
 
     @Override
