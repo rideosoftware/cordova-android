@@ -28,6 +28,7 @@ import android.content.IntentFilter;
 import android.content.pm.ApplicationInfo;
 import android.os.Build;
 import android.util.Log;
+import android.util.Map;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebSettings.LayoutAlgorithm;
@@ -266,6 +267,11 @@ public class SystemWebViewEngine implements CordovaWebViewEngine {
     @Override
     public void loadUrl(final String url, boolean clearNavigationStack) {
         webView.loadUrl(url);
+    }
+
+    @Override
+    public void loadUrl(final String url, boolean clearNavigationStack, Map<String,String> headers) {
+        webView.loadUrl(url, headers);
     }
 
     @Override

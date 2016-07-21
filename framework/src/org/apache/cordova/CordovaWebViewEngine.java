@@ -21,6 +21,8 @@ package org.apache.cordova;
 import android.view.KeyEvent;
 import android.view.View;
 
+import java.util.Map;
+
 /**
  * Interface for all Cordova engines.
  * No methods will be added to this class (in order to be compatible with existing engines).
@@ -36,6 +38,7 @@ public interface CordovaWebViewEngine {
     View getView();
 
     void loadUrl(String url, boolean clearNavigationStack);
+    void loadUrl(String url, boolean clearNavigationStack, Map<String,String> headers);
 
     void stopLoading();
 

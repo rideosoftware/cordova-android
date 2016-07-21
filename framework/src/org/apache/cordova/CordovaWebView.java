@@ -40,6 +40,7 @@ public interface CordovaWebView {
     View getView();
 
     void loadUrlIntoView(String url, boolean recreatePlugins);
+    void loadUrlIntoView(String url, boolean recreatePlugins, Map<String,String> headers);
 
     void stopLoading();
 
@@ -138,5 +139,6 @@ public interface CordovaWebView {
     // TODO: Work on deleting these by removing refs from plugins.
     Context getContext();
     void loadUrl(String url);
+    void loadUrl(String url, Map<String,String> headers);
     Object postMessage(String id, Object data);
 }

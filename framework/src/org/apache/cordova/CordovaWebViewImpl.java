@@ -36,6 +36,7 @@ import org.json.JSONObject;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -124,6 +125,12 @@ public class CordovaWebViewImpl implements CordovaWebView {
 
     @Override
     public void loadUrlIntoView(final String url, boolean recreatePlugins) {
+    		Map <String,String> headers = new HashMap<String,String>();
+		    loadUrlIntoView(url, recreatePlugins, headers);
+    }
+
+    @Override
+    public void loadUrlIntoView(final String url, boolean recreatePlugins, Map<String,String> headers) {
         LOG.d(TAG, ">>> loadUrl(" + url + ")");
         if (url.equals("about:blank") || url.startsWith("javascript:")) {
             engine.loadUrl(url, false);
@@ -183,12 +190,13 @@ public class CordovaWebViewImpl implements CordovaWebView {
         };
 
         final boolean _recreatePlugins = recreatePlugins;
+        final Map<String,String> _headers = headers;
         cordova.getActivity().runOnUiThread(new Runnable() {
             public void run() {
                 if (loadUrlTimeoutValue > 0) {
                     cordova.getThreadPool().execute(timeoutCheck);
                 }
-                engine.loadUrl(url, _recreatePlugins);
+                engine.loadUrl(url, _recreatePlugins, _headers);
             }
         });
     }
